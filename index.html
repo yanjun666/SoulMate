@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 移动端视口设置：禁止缩放 + 安全区域支持 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>SoulMate · 遇见对的人</title>
+
+    <!-- PWA 基础标签 -->
+    <meta name="application-name" content="SoulMate" />
+    <meta name="description" content="SoulMate - 遇见对的人，社交交友平台" />
+    <meta name="theme-color" content="#f43f5e" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- iOS PWA 支持 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SoulMate" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+
+    <!-- Android / Chrome -->
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- 防止电话号码自动识别 -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 生成内联 SVG favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>" />
+
+    <!-- 苹果触摸图标（内联 base64，粉色心形图标） -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f43f5e'/><text x='50' y='58' text-anchor='middle' dominant-baseline='middle' font-size='55'>💕</text></svg>" />
+
+    <style>
+      /* 启动画面和加载状态 */
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f43f5e, #ec4899, #a855f7);
+        transition: opacity 0.5s ease;
+      }
+      #splash-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #splash-screen .logo {
+        font-size: 4rem;
+        animation: pulse-logo 1.5s ease-in-out infinite;
+      }
+      #splash-screen .title {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        letter-spacing: 0.1em;
+      }
+      #splash-screen .subtitle {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+      #splash-screen .loader {
+        width: 40px;
+        height: 40px;
+        margin-top: 2rem;
+        border: 3px solid rgba(255,255,255,0.2);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes pulse-logo {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* 防止选择和长按菜单 */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 启动画面 -->
+    <div id="splash-screen">
+      <div class="logo">💕</div>
+      <div class="title">SoulMate</div>
+      <div class="subtitle">遇见对的人</div>
+      <div class="loader"></div>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // 注册 Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('✅ Service Worker 注册成功:', reg.scope))
+            .catch(err => console.log('❌ Service Worker 注册失败:', err));
+        });
+      }
+
+      // 隐藏启动画面
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const splash = document.getElementById('splash-screen');
+          if (splash) {
+            splash.classList.add('fade-out');
+            setTimeout(() => splash.remove(), 500);
+          }
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "SoulMate · 遇见对的人",
+  "short_name": "SoulMate",
+  "description": "SoulMate 社交交友平台 - 遇见对的人",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "categories": ["social", "lifestyle"],
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23f43f5e'/><text x='96' y='120' text-anchor='middle' font-size='100'>💕</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23f43f5e'/><text x='256' y='320' text-anchor='middle' font-size='280'>💕</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "发现新朋友",
+      "url": "/?page=discover",
+      "description": "浏览附近的人"
+    },
+    {
+      "name": "查看消息",
+      "url": "/?page=chat",
+      "description": "查看最新消息"
+    }
+  ]
+}
