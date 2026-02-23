@@ -1,8 +1,9 @@
-name = "soulmate"                  # 必须和你的 Pages 项目名一致（小写）
-compatibility_date = "2026-02-23"  # 随便填当前或未来日期
+name = "soulmate"                  # 必须和小写项目名一致
+compatibility_date = "2026-02-23"  # 当前或未来日期
 
+# 纯静态资产配置（Vite 构建输出）
 [assets]
-directory = "./dist"               # 指向 Vite 构建的输出目录
+directory = "./dist"               # 指向 dist 目录
 
-[site]
-bucket = "./dist"                  # 可选，兼容旧版
+# 支持 SPA 单页应用路由（重要！防止刷新 404）
+not_found_handling = "single-page-application"
