@@ -1,0 +1,8 @@
+name = "soulmate"                  # 必须和你的 Pages 项目名一致（小写）
+compatibility_date = "2026-02-23"  # 随便填当前或未来日期
+
+[assets]
+directory = "./dist"               # 指向 Vite 构建的输出目录
+
+[site]
+bucket = "./dist"                  # 可选，兼容旧版
